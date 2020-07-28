@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { addCar } from '../../store/cars';
+import { showMessage, hideMessage } from '../../store/layout';
 
 const INITIAL_STATE = {
 	name: '',
@@ -13,7 +14,6 @@ export default function Add() {
 
 	const dispath = useDispatch();
 
-
 	function handleChange(e)  {
 		const { name, value } = e.target;
 		setForm(form => ({ ...form, ...{ [name]: value } }));
@@ -22,7 +22,12 @@ export default function Add() {
 	function handleSubmit(e) {
 		e.preventDefault();
 		dispath(addCar(form));
-		setForm(INITIAL_STATE)
+		setForm(INITIAL_STATE);
+		dispath(showMessage());
+
+		setTimeout(() => {
+			dispath(hideMessage())
+		}, 1000);
 	}
 
 	return (
