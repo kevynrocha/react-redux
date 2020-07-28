@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { addCar } from '../../store/cars';
-import { showMessage, hideMessage } from '../../store/layout';
+import { Creators as CreatorsLayout } from '../../store/layout';
 
 const INITIAL_STATE = {
 	name: '',
@@ -11,7 +11,8 @@ const INITIAL_STATE = {
 
 export default function Add() {
 	const [form, setForm] = useState(INITIAL_STATE)
-
+	
+	const { hideMessage, showMessage } = CreatorsLayout;
 	const dispath = useDispatch();
 
 	function handleChange(e)  {
